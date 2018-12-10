@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MultPlatProject"
+    x:Class="MultPlatProject.BooksPage"
+    Title="Livros">
+        
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding GetCommand}" Icon="reload.png"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.BindingContext>
+        <local:BooksViewModel RequestFailed="Handle_RequestFailed" />
+    </ContentPage.BindingContext>
+
+    <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Horizontal">
+            <Entry x:Name="TitleEntry" HorizontalOptions="FillAndExpand" />
+            <Button Text="Buscar" Command="{Binding GetCommand}" 
+                    CommandParameter="{Binding Text, Source={Reference TitleEntry}}" />
+        </StackLayout>
+
+        <ListView ItemsSource="{Binding Data}" HasUnevenRows="true" IsPullToRefreshEnabled="True"
+              RefreshCommand="{Binding GetCommand}" IsRefreshing="{Binding IsLoading}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal"
+                                 Padding="10,10,10,10">
+                            <Image Source="{Binding Cover}"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               VerticalOptions="CenterAndExpand"/>
+
+                            <StackLayout>
+                                <Label Text="{Binding Title}" FontSize="Large"/>
+                                <Label Text="{Binding Author.Name}" FontSize="Small" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

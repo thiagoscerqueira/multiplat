@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MultPlatProject"
+             x:Class="MultPlatProject.NewAuthorPage">
+
+    <ContentPage.BindingContext>
+        <local:NewAuthorViewModel RequestFailed="Handle_RequestFailed" AuthorAdded="Handle_Back" />
+    </ContentPage.BindingContext>
+
+    <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Nome" VerticalOptions="Center"/>
+            <Entry 
+                x:Name="NameEntry"
+                Placeholder="Nome do Autor"
+                HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+
+        <Button Text="Inserir"
+                    Command="{Binding PostCommand}"
+                    CommandParameter="{Binding Text, Source={Reference NameEntry}}" />
+    </StackLayout>
+    
+</ContentPage>
