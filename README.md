@@ -1,1 +1,3 @@
-# Projeto mobile multiplataforma (Xamarin) simulando funcionalidades de uma biblioteca
+#Biblioteca Multiplataforma
+
+Projeto mobile multiplataforma (Xamarin Forms) simulando funcionalidades de uma biblioteca
